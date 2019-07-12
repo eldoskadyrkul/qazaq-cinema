@@ -9,7 +9,9 @@ export function movieList(state = [], {type, payload}) {
     case 'SEE_A_MOVIE':
       return [...state, type];
     case 'SIMILAR MOVIE':
-      return [...state, type]
+      return [...state, type];
+    case 'MOVIE ACTORS':
+      return [...state, type];
     default:
       return state;
   }

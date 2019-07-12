@@ -8,6 +8,8 @@ import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs-compat/add/operator/takeUntil';
 import {DomSanitizer} from '@angular/platform-browser';
+import {CastService} from '../../service/cast.service';
+import {CastDatabase} from '../../models/cast-database';
 
 @Component({
   selector: 'app-details-movie',
@@ -18,19 +20,23 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
 
   public pageISReady = false;
   public movie;
+  public castList;
   private videoEmbedUrl = 'https://youtube.com/embed/';
 
   private  ngUnscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private service: MoviesService,
+    private castService: CastService,
     private route: ActivatedRoute,
     private store: Store<DatabaseModel>,
+    private storeCast: Store<CastDatabase>,
     private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit() {
     this.getAboutMovies();
+    this.getCastMovies();
   }
 
   ngOnDestroy() {
@@ -51,7 +57,23 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
       .subscribe(movie => {
         this.movie = movie;
         this.pageISReady = true;
-        this.store.dispatch({type: 'SEE A MOVIE'});
+        this.storeCast.dispatch({type: 'SEE A MOVIE'});
+      });
+  }
+
+  getCastMovies() {
+    this.route.paramMap
+      .switchMap((params: ParamMap) =>
+      this.castService.getActorsID(+params.get('movie_id')))
+      .takeUntil(this.ngUnscribe)
+      .subscribe(movie => {
+      });
+
+    this.castService.getActors()
+      .takeUntil(this.ngUnscribe)
+      .subscribe(casts => {
+        this.castList = casts;
+        this.store.dispatch({type: 'LOAD_SUCCEEDED'});
       });
   }
 

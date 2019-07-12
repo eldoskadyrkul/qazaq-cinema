@@ -5,6 +5,7 @@ import {DatabaseModel} from '../../models/database-model';
 import {Subject} from 'rxjs';
 import {element} from 'protractor';
 import {equal} from 'assert';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-similar-movie',
@@ -16,13 +17,13 @@ export class SimilarMovieComponent implements OnInit {
   public movieList;
   public movie;
   public showSimilarMovie;
-  private genreSimilar;
 
   private  ngUnscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private service: MoviesService,
     private store: Store<DatabaseModel>,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -30,7 +31,15 @@ export class SimilarMovieComponent implements OnInit {
   }
 
   getSimilarMovies() {
-
+    this.route.paramMap
+      .switchMap((params: ParamMap) =>
+        this.service.getSimilarGenres(+params.get('genres'))
+      )
+      .takeUntil(this.ngUnscribe)
+      .subscribe(movie => {
+        this.movie = movie;
+        this.store.dispatch({type: 'SIMILAR MOVIE'});
+      });
   }
 
   setSimilarMovies(genre) {
