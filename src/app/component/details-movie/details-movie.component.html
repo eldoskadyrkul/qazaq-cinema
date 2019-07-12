@@ -1,0 +1,45 @@
+<app-header></app-header>
+  <main>
+    <div *ngIf="pageISReady" class="container details-container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="title">{{movie.name}}</h1>
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <img class="details-poster" src="./assets/image/{{movie.img}}" alt="">
+            </div>
+            <div class="col-sm-6 col-md-8">
+              <div class="details-info">
+                <ul>
+                  <li><strong>Rating:</strong> {{movie.rate}}</li>
+                  <li><strong>Length:</strong> {{movie.length}}</li>
+                </ul>
+
+              </div>
+              <div class="details-content">
+                <p>{{movie.description}}</p>
+              </div>
+
+              <div class="details-genres">
+              <span *ngFor="let genre of movie.genres" class="genre">
+             {{genre}}
+           </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div routerLink="/" class="btn btn-regular">Back to list <i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h1 class="title movie_trailer">{{movie.name}} - Trailer</h1>
+          <iframe [src]="videoTrailerURL()" frameborder="0" width="100%" height="600"></iframe>
+        </div>
+      </div>
+      <app-similar-movie></app-similar-movie>
+    </div>
+  </main>

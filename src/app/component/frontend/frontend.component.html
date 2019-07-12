@@ -1,0 +1,23 @@
+<app-header></app-header>
+<app-search-films (searchChange)="onSearch($event)"></app-search-films>
+<main>
+  <div class="container main-container">
+    <div class="row">
+      <div *ngFor="let movie of movieList | search: searchPhrase | genre: showGenre " [routerLink]="['/movie', movie.id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
+        <div class="movie-item">
+          <div class="movie-poster">
+            <img src="./assets/image/{{movie.img}}" alt="">
+          </div>
+        </div>
+        <div class="movie-info">
+          <div class="movie-movie-title">{{movie.name}}</div>
+          <div class="details">
+            <span class="rate">Rate: {{movie.rate}}</span>
+            <span class="length">{{movie.length}}</span>
+          </div>
+        </div>
+      </div>
+      <!--item-->
+    </div>
+  </div>
+</main>
