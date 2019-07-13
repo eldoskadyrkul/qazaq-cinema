@@ -1,0 +1,79 @@
+$blue: #0fb5de;
+$darkblack: #0e0e27;
+$bl: #00b9ec;
+$white: #fff;
+
+.qazaq-video-list-items {
+  position: relative;
+}
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.qazaq-v-list-i-img {
+  float: left;
+  margin-right: 20px;
+  margin-top: 8px;
+}
+
+.qazaq-v-list-i-img img {
+  border-radius: 5px;
+}
+
+.qazaq-v-tag span {
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.qazaq-v-list-content a {
+  font-size: 13px;
+  font-weight: 600;
+  color: $white;
+  line-height: 20px;
+}
+
+.qazaq-v-list-content a:hover {
+  color: $bl;
+}
+
+.movie-time i {
+  margin-right: 5px;
+}
+
+.movie-time {
+  text-transform: capitalize;
+  margin-top: 4px;
+}
+
+.qazaq-v-list-item {
+  overflow: hidden;
+  border: 2px solid $darkblack;
+  border-radius: 5px;
+  padding: 7px 10px;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.qaza-v-list-item:hover {
+  border-color: $blue;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.qazaq-video-list-ply {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

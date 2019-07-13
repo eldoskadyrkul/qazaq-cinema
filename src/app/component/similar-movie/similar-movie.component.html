@@ -1,18 +1,16 @@
-<div class="row">
-  <div class="col-12">
-    <h1 class="movie_trailer title">Similar films</h1>
-    <div *ngFor="let movies of movieList | similar: showSimilarMovie" [routerLink]="['/movie', movies.id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
-      <div class="movie-item">
-        <div class="movie-poster">
-          <img src="./assets/image/{{movies.img}}" alt="">
-        </div>
+<div class="qazaq-video-list-items">
+  <div class="qazaq-v-list-items mt-30" *ngFor="let movies of movieList">
+    <div class="qazaq-v-list-i-img">
+      <img src="assets/image/{{movies.img}}" alt="">
+    </div>
+    <div class="qazaq-v-list-content">
+      <div class="qazaq-v-tag c2">
+        <span>{{ movies.genres}}</span>
       </div>
-      <div class="movie-info">
-        <div class="movie-movie-title">{{movies.name}}</div>
-        <div class="details">
-          <span class="rate">Rate: {{movies.rate}}</span>
-          <span class="length">{{movies.length}}</span>
-        </div>
+      <a [routerLink]="['/movie', movies.id]">{{movies.name}}</a>
+      <div class="movie-time">
+        <i class="fa fa-clock-o c1"></i>
+        <span> {{movies.length}} </span>
       </div>
     </div>
   </div>

@@ -1,51 +1,107 @@
 <app-header></app-header>
-  <main>
-    <div routerLink="/" class="btn btn-regular">Back to list <i class="fa fa-angle-double-right" aria-hidden="true"></i></div>
-    <div *ngIf="pageISReady" class="container details-container">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="title">{{movie.name}}</h1>
-        </div>
-        <div class="col-md-6">
-          <div class="row">
-            <div class="col-sm-6 col-md-4">
-              <img class="details-poster" src="./assets/image/{{movie.img}}" alt="">
-            </div>
-            <div class="col-sm-6 col-md-8">
-              <div class="details-info">
-                <ul>
-                  <li><strong class="font-weight-bold">Rating:</strong> {{movie.rate}}</li>
-                  <li><strong class="font-weight-bold">Length:</strong> {{movie.length}}</li>
-                  <li><strong class="font-weight-bold">Genres:</strong> {{movie.genres }}</li>
-                </ul>
-
-              </div>
-              <div class="details-content">
-                <p>{{movie.description}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <iframe [src]="videoTrailerURL()" frameborder="0" width="100%" height="600"></iframe>
-        </div>
+<div class="qazaq-breadcroumb-area">
+  <div class="qazaq-breadcroumb-bg">
+    <div class="container">
+      <div class="qazaq-breadcroumb-inner text-center">
+        <h2 class="text-white">{{movie.name}}</h2>
+        <span>{{movie.name}}</span>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <h1 class="movie_trailer title">Actors</h1>
-          <div *ngFor="let actors of castList" [routerLink]="['/movie', actors.movie_id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
-            <div class="movie-item">
-              <div class="movie-poster">
-                <img src="./assets/image/actors/{{actors.image}}" alt="">
-              </div>
-            </div>
-            <div class="movie-info">
-              <div class="movie-movie-title">{{actors.actors}}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <app-similar-movie></app-similar-movie>
     </div>
-  </main>
+  </div>
+</div>
+<div class="qazaq-inner-page">
+  <div *ngIf="pageISReady" class="qazaq-blog-details pt-50">
+    <div class="container">
+      <div class="qazaq-blog-content">
+        <div class="row">
+          <div class="col-12">
+            <div class="qazaq-product-sidebar">
+              <div class="row">
+                <div class="col-lg-3">
+                  <div class="qazaq-widget">
+                    <h2 id="hidden-cat" class="widget-title mb-30 hidden-cat">
+                      <span>movie</span>
+                    </h2>
+                    <div class="qazaq-category catmenu" id="catmenu">
+                      <ul>
+                        <li><a class="active" href="/">Back</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="qazaq-widget">
+                    <div class="qazaq-video-list-inner">
+                      <h2 class="widget-title mb-30 mt-30">
+                        <span>Similar Movie</span>
+                      </h2>
+                      <app-similar-movie></app-similar-movie>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-9">
+                  <div class="qazaq-blog-contents">
+                    <div class="qazaq-slider-area slider3">
+                      <div class="items">
+                        <div class="item">
+                          <div class="qazaq-slider-contents gradient">
+                            <img src="assets/image/{{movie.img}}" alt="">
+                            <div class="qazaq-slider-premium-tag">
+                              <span class="c2-bg">movie</span>
+                            </div>
+                            <div class="qazaq-slide-content">
+                              <div class="container">
+                                <div class="qazaq-slider-connet">
+                                  <a>{{movie.name}}</a>
+                                  <div class="qazaq-slide-cat">
+                                    <div class="qazaq-meta-info">
+                                      <div class="dec-review">
+                                        <div class="ratting">
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                          <span class="fa fa-star"></span>
+                                          <a>{{movie.rate}}</a>
+                                        </div>
+                                        <div class="dec-review-meta">
+                                          <ul>
+                                            <li>
+                                              <span>
+                                              Genres   <label>:</label>
+                                              </span>
+                                              <a>{{movie.genres}}</a>
+                                            </li>
+                                            <li>
+                                              <span>
+                                                Length <label>:</label>
+                                              </span>
+                                              <a>{{movie.length}}</a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="qazaq-blog-dec-content pt-50">
+                      <h2>Movie Story</h2>
+                      <div class="qazaq-blog-d-p">
+                        <p>{{movie.description}}</p>
+                        <iframe [src]="videoTrailerURL()" frameborder="0" width="100%" height="600"></iframe>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

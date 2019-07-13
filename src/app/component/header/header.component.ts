@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {DatabaseModel} from '../../models/database-model';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public searchPhrase = '';
+
+  constructor(private store: Store<DatabaseModel>) { }
 
   ngOnInit() {
+  }
+
+  onSearch(value) {
+    this.searchPhrase = value;
+    this.store.dispatch({type: 'SEARCH_MOVIES'});
   }
 
 }
