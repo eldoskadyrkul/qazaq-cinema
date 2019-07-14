@@ -3,8 +3,7 @@ import {MoviesService} from '../../service/movies.service';
 import {Store} from '@ngrx/store';
 import {DatabaseModel} from '../../models/database-model';
 import {Subject} from 'rxjs';
-import {element} from 'protractor';
-import {equal} from 'assert';
+import {genreType} from '../../models/genre-types.module';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
@@ -23,14 +22,24 @@ export class SimilarMovieComponent implements OnInit {
   constructor(
     private service: MoviesService,
     private store: Store<DatabaseModel>,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.getSimilarMovies();
+    this.getMovies();
   }
 
   getSimilarMovies() {
+    this.service.getSimilarGenres(genreType)
+      .takeUntil(this.ngUnscribe)
+      .subscribe(movie => {
+        this.movieList = movie;
+        this.store.dispatch({type: 'LOAD_SUCCEEDED'});
+        });
+  }
+
+  getMovies() {
     this.route.paramMap
       .switchMap((params: ParamMap) =>
         this.service.getSimilarGenres(+params.get('genres'))
@@ -38,12 +47,12 @@ export class SimilarMovieComponent implements OnInit {
       .takeUntil(this.ngUnscribe)
       .subscribe(movie => {
         this.movie = movie;
-        this.store.dispatch({type: 'SIMILAR MOVIE'});
+        this.store.dispatch({type: 'SEE A MOVIE'});
       });
   }
 
   setSimilarMovies(genre) {
-    this.showSimilarMovie ! = genre.movie.genres ? this.showSimilarMovie = genre.movie.genres : this.showSimilarMovie = null;
+    this.showSimilarMovie ! = genre ? this.showSimilarMovie = genre : this.showSimilarMovie = null;
     this.store.dispatch({type: 'SIMILAR MOVIE'});
   }
 

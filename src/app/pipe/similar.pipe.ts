@@ -9,7 +9,7 @@ export class SimilarPipe implements PipeTransform {
     if (type == null) {
       return value;
     } else {
-      return value.filter(item => item.genres);
+      return value.filter(item => item.genres.includes(type));
     }
   }
 
