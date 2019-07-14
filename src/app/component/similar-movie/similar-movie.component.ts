@@ -15,7 +15,7 @@ export class SimilarMovieComponent implements OnInit {
 
   public movieList;
   public movie;
-  public showSimilarMovie;
+  public showSimilarMovie = {genres: 'Action,Adventure,Comedy'};
 
   private  ngUnscribe: Subject<void> = new Subject<void>();
 
@@ -27,11 +27,10 @@ export class SimilarMovieComponent implements OnInit {
 
   ngOnInit() {
     this.getSimilarMovies();
-    this.getMovies();
   }
 
   getSimilarMovies() {
-    this.service.getSimilarGenres(genreType)
+    this.service.getSimilar()
       .takeUntil(this.ngUnscribe)
       .subscribe(movie => {
         this.movieList = movie;
@@ -42,7 +41,7 @@ export class SimilarMovieComponent implements OnInit {
   getMovies() {
     this.route.paramMap
       .switchMap((params: ParamMap) =>
-        this.service.getSimilarGenres(+params.get('genres'))
+        this.service.getSimilarGenres(+params.get('id'))
       )
       .takeUntil(this.ngUnscribe)
       .subscribe(movie => {

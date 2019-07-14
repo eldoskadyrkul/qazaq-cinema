@@ -9,6 +9,7 @@ import { moviesList } from './movie-list';
 export class MoviesService {
 
   movieList: any = moviesList;
+  similarList: any = moviesList;
   genres = genreType;
 
   getMovies(): Observable<any> {
@@ -22,6 +23,10 @@ export class MoviesService {
 
   getGenres(): Observable<any> {
     return of(this.genres);
+  }
+
+  getSimilar(): Observable<any> {
+    return of(this.similarList);
   }
 
   getSimilarGenres(genres): Observable<any> {
