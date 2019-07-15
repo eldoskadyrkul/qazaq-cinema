@@ -20,7 +20,9 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
 
   public pageISReady = false;
   public movie;
+  public genres;
   public castList;
+  public showGenre;
   private videoEmbedUrl = 'https://youtube.com/embed/';
 
   private  ngUnscribe: Subject<void> = new Subject<void>();
@@ -37,6 +39,7 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getAboutMovies();
     this.getCastMovies();
+    this.getGenres();
   }
 
   ngOnDestroy() {
@@ -75,6 +78,19 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
         this.castList = casts;
         this.store.dispatch({type: 'LOAD_SUCCEEDED'});
       });
+  }
+
+  getGenres() {
+    this.service.getGenres()
+      .takeUntil(this.ngUnscribe)
+      .subscribe(genres => {
+        this.genres = Object.keys(genres);
+      });
+  }
+
+  setGenre(genre) {
+    this.showGenre ! = genre ? this.showGenre = genre : this.showGenre = null;
+    this.store.dispatch({type: 'FILTER_MOVIES'});
   }
 
 

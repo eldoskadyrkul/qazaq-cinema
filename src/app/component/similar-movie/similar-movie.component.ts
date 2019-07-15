@@ -15,7 +15,8 @@ export class SimilarMovieComponent implements OnInit {
 
   public movieList;
   public movie;
-  public showSimilarMovie = {genres: 'Action,Adventure,Comedy'};
+  private var;
+  public showSimilarMovie;
 
   private  ngUnscribe: Subject<void> = new Subject<void>();
 

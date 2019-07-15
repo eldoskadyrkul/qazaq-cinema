@@ -28,6 +28,39 @@
                       </ul>
                     </div>
                   </div>
+                  <div class="qazaq-widget mb-30 mt-30">
+                    <h2 class="widget-title">
+                      <span>Catalog</span>
+                    </h2>
+                  </div>
+                  <div class="widget-select-area">
+                    <p>
+                      <span class="item-title">Genres</span>
+                    </p>
+                    <div class="dropdown bootstrap-select dropup">
+                      <select class="selectpicker">
+                        <option [ngClass]="{'selected': genre === showGenre}" (click)="setGenre(genre)" *ngFor="let genre of genres" value="{{genre}}">{{genre}}</option>
+                      </select>
+                      <button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" aria-expanded="false">
+                        <div class="filter-option">
+                          <div class="filter-option-inner">
+                            <div class="filter-option-inner-inner"></div>
+                          </div>
+                        </div>
+                      </button>
+                      <div class="dropdown-menu" role="combobox">
+                        <div class="inner show" role="listbox" aria-expanded="false">
+                          <ul class="dropdown-menu inner show">
+                            <li [ngClass]="{'selected': genre === showGenre}" (click)="setGenre(genre)" *ngFor="let genre of genres">
+                              <a role="option" class="dropdown-item" aria-disabled="false" aria-selected="false">
+                                <span class="text">{{genre}}</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="qazaq-widget">
                     <div class="qazaq-video-list-inner">
                       <h2 class="widget-title mb-30 mt-30">

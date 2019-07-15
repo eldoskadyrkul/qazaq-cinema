@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'similar'
+  name: 'similar',
+  pure: false
 })
 export class SimilarPipe implements PipeTransform {
 
@@ -9,7 +10,7 @@ export class SimilarPipe implements PipeTransform {
     if (items || !filterSimilar) {
       return items;
     }
-    return items.filter(item => item.genres.indexOf(filterSimilar.genres) !== -1);
+    return items.filter(item => item.genres.indexOf(filterSimilar.genres) > -1);
   }
 
 }
