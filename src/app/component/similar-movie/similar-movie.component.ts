@@ -37,7 +37,6 @@ export class SimilarMovieComponent implements OnInit {
       .takeUntil(this.ngUnscribe)
       .subscribe(movie => {
         this.movieList = movie;
-        movie.hasOwnProperty(this.genres);
         this.store.dispatch({type: 'LOAD_SUCCEEDED'});
       });
   }

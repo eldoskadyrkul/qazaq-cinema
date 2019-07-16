@@ -1647,3 +1647,21 @@ span.count {
 .qazaq-blog-dec-contents:hover .qazaq-slide-ply-btn {
   opacity: 1;
 }
+
+@media (max-width:480px) {
+  .qazaq-breadcroumb-inner span {
+    font-size: 34px;
+  }
+  .dec-review-meta ul li span {
+    width: 65px;
+  }
+  .slider3 .qazaq-slide-content {
+    left: 0;
+    position: relative;
+    display: block;
+    margin: 100px 0 0;
+  }
+  .qazaq-blog-d-p iframe {
+    height: 300px;
+  }
+}

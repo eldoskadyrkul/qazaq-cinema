@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let movie of movieList | search: searchPhrase | genre: showGenre " [routerLink]="['/movie', movie.id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
+      <div *ngFor="let movie of movieList | search: searchPhrase | genre: showGenre "  [queryParams]="{genres: movie.genres}" [routerLink]="['/movie', movie.id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
         <div class="movie-item">
           <div class="movie-poster">
             <img src="./assets/image/{{movie.img}}" alt="">
@@ -25,8 +25,8 @@
         <div class="movie-info">
           <div class="movie-movie-title">{{movie.name}}</div>
           <div class="details">
-            <span class="rate">Rate: {{movie.rate}}</span>
-            <span class="length">{{movie.length}}</span>
+            <span class="rate"><span class="fa fa-star"></span> {{movie.rate}}</span>
+            <span class="length"><span class="fa fa-clock-o"></span> {{movie.length}}</span>
           </div>
         </div>
       </div>
