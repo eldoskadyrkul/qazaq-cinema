@@ -11,7 +11,7 @@ export class SimilarPipe implements PipeTransform {
     if (items == null) {
       return items;
     }
-    // @ts-ignore
-    return items.filter(item => item.genres != filterSimilar);
+
+    items.filter(item => item.genres.find(genre => genre.name === filterSimilar.name) != undefined);
   }
 }

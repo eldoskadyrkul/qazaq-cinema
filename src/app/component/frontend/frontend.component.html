@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let movie of movieList | search: searchPhrase | genre: showGenre "  [queryParams]="{genres: movie.genres}" [routerLink]="['/movie', movie.id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
+      <div *ngFor="let movie of movieList | search: searchPhrase | genre: showGenre " [routerLink]="['/movie', movie.id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
         <div class="movie-item">
           <div class="movie-poster">
             <img src="./assets/image/{{movie.img}}" alt="">

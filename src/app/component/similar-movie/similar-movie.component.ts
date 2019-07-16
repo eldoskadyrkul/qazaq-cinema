@@ -1,17 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MoviesService} from '../../service/movies.service';
 import {Store} from '@ngrx/store';
 import {DatabaseModel} from '../../models/database-model';
 import {Subject} from 'rxjs';
-import {genreType} from '../../models/genre-types.module';
 import {ActivatedRoute, ParamMap} from '@angular/router';
-import {MovieModel} from '../../models/movie-model';
 import 'rxjs-compat/add/operator/filter';
 
+// @ts-ignore
 @Component({
   selector: 'app-similar-movie',
   templateUrl: './similar-movie.component.html',
-  styleUrls: ['./similar-movie.component.scss']
+  styleUrls: ['./similar-movie.component.scss'],
 })
 export class SimilarMovieComponent implements OnInit {
 
@@ -29,11 +28,11 @@ export class SimilarMovieComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getSimilarMovies();
     this.getMovies();
+    this.getGenresURL();
   }
 
-  getSimilarMovies() {
+  getGenresURL() {
     this.route.queryParams
       .filter(params => params.genres)
       .subscribe((params) => {
@@ -44,7 +43,7 @@ export class SimilarMovieComponent implements OnInit {
   getMovies() {
     this.route.paramMap
       .switchMap((params: ParamMap) =>
-        this.service.getSimilarGenres(+params.get('id'))
+        this.service.getSimilarGenres(params.get('id'))
       )
       .takeUntil(this.ngUnscribe)
       .subscribe(movie => {
