@@ -6,6 +6,7 @@ import {Subject} from 'rxjs';
 import {genreType} from '../../models/genre-types.module';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {MovieModel} from '../../models/movie-model';
+import 'rxjs-compat/add/operator/filter';
 
 @Component({
   selector: 'app-similar-movie',
@@ -33,11 +34,10 @@ export class SimilarMovieComponent implements OnInit {
   }
 
   getSimilarMovies() {
-    this.service.getSimilar()
-      .takeUntil(this.ngUnscribe)
-      .subscribe(movie => {
-        this.movieList = movie;
-        this.store.dispatch({type: 'LOAD_SUCCEEDED'});
+    this.route.queryParams
+      .filter(params => params.genres)
+      .subscribe((params) => {
+        this.showSimilarMovie = params;
       });
   }
 

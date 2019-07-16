@@ -21,8 +21,8 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
   public pageISReady = false;
   public movie;
   public genres;
-  public actors;
   public castList;
+  public movieList;
   public showGenre;
   private videoEmbedUrl = 'https://youtube.com/embed/';
 
