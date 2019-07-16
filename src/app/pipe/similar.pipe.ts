@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import {MovieModel} from '../models/movie-model';
 
 @Pipe({
   name: 'similar',
@@ -6,11 +7,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SimilarPipe implements PipeTransform {
 
-  transform(items: any[], filterSimilar: any): any {
-    if (items || !filterSimilar) {
+  transform(items: MovieModel[], filterSimilar: MovieModel): any {
+    if (items == null) {
       return items;
     }
-    return items.filter(item => item.genres.indexOf(filterSimilar.genres) > -1);
+    items.filter(item => item.genres.find(genre => genre.name === filterSimilar.name) != undefined);
   }
-
 }

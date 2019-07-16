@@ -3,6 +3,19 @@
 <main>
   <div class="container main-container">
     <div class="row">
+      <div class="col-sm-6">
+        <h2 class="title"><i class="fa fa-film" aria-hidden="true"></i>Movies</h2>
+      </div>
+      <div class="col-sm-6 extra-features">
+        <div [ngClass]="{'active': showDropdown}" class="movies-genre">
+          <span (click)="toggleDropdown()">Choose a genre<i class="fa fa-angle-down" aria-hidden="true"></i></span>
+          <ul class="list">
+            <li [ngClass]="{'selected': genre === showGenre}" (click)="setGenre(genre)" *ngFor="let genre of genres"><i class="fa fa-angle-right" aria-hidden="true"></i>{{genre}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div *ngFor="let movie of movieList | search: searchPhrase | genre: showGenre " [routerLink]="['/movie', movie.id]" class="col-md-2 col-sm-2 col-xs-6 col-lg-2 movie-box">
         <div class="movie-item">
           <div class="movie-poster">

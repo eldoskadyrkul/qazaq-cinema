@@ -21,6 +21,7 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
   public pageISReady = false;
   public movie;
   public genres;
+  public actors;
   public castList;
   public showGenre;
   private videoEmbedUrl = 'https://youtube.com/embed/';
@@ -40,6 +41,7 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
     this.getAboutMovies();
     this.getCastMovies();
     this.getGenres();
+    this.getActors();
   }
 
   ngOnDestroy() {
@@ -67,16 +69,19 @@ export class DetailsMovieComponent implements OnInit, OnDestroy {
   getCastMovies() {
     this.route.paramMap
       .switchMap((params: ParamMap) =>
-      this.castService.getActorsID(+params.get('movie_id')))
+        this.castService.getActorsID(+params.get('movie_id')))
       .takeUntil(this.ngUnscribe)
-      .subscribe(movie => {
+      .subscribe(cast => {
+        this.castList = cast;
+        this.store.dispatch({type: 'SEE A MOVIE'});
       });
+  }
 
-    this.castService.getActors()
+  getActors() {
+    this.castService.getActorsMovie()
       .takeUntil(this.ngUnscribe)
       .subscribe(casts => {
-        this.castList = casts;
-        this.store.dispatch({type: 'LOAD_SUCCEEDED'});
+        this.castList = Object.keys(casts);
       });
   }
 

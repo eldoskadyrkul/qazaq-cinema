@@ -28,7 +28,7 @@
                       </ul>
                     </div>
                   </div>
-                  <div class="qazaq-widget mb-30 mt-30">
+                  <!-- <div class="qazaq-widget mb-30 mt-30">
                     <h2 class="widget-title">
                       <span>Catalog</span>
                     </h2>
@@ -44,7 +44,7 @@
                       <button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" aria-expanded="false">
                         <div class="filter-option">
                           <div class="filter-option-inner">
-                            <div class="filter-option-inner-inner"></div>
+                            <div class="filter-option-inner-inner">Genres</div>
                           </div>
                         </div>
                       </button>
@@ -60,7 +60,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                   <div class="qazaq-widget">
                     <div class="qazaq-video-list-inner">
                       <h2 class="widget-title mb-30 mt-30">
@@ -119,6 +119,14 @@
                             </div>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                    <div class="qazaq-blog-dec-content pt-50">
+                      <h2>Cast</h2>
+                      <div class="qazaq-cast" *ngFor="let cast of castList">
+                        <div class="qazaq-cast-img">
+                          <img *ngFor="let castImg of cast.image" src="assets/image/actors/{{castImg}}" alt="">
+                          <p *ngFor="let castActors of cast.actors">{{ castActors }}</p>
                       </div>
                     </div>
                     <div class="qazaq-blog-dec-content pt-50">

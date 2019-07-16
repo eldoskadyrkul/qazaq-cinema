@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { FrontendComponent } from './component/frontend/frontend.component';
 import {HttpClientModule} from '@angular/common/http';
 import {CarouselModule} from 'ngx-bootstrap/carousel';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { SearchFilmsComponent } from './component/search-films/search-films.component';
 import { DetailsMovieComponent } from './component/details-movie/details-movie.component';
 import { SearchPipe } from './pipe/search.pipe';
