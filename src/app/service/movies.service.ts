@@ -26,11 +26,11 @@ export class MoviesService {
   }
 
   getSimilar(): Observable<any> {
-    return of(this.similarList);
+    return of(this.genres);
   }
 
   getSimilarGenres(genres): Observable<any> {
-    const selectMovie = this.movieList.filter(movie => movie.genres != genres);
+    const selectMovie = this.movieList.filter(movie => movie.genres === genres);
     return of(selectMovie[0]);
   }
 

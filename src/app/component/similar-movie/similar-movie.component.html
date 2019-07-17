@@ -1,16 +1,16 @@
 <div class="qazaq-video-list-items">
-  <div class="qazaq-v-list-items mt-30" *ngFor="let movie of movieList | similar: movieList">
+  <div (load)="getSimilarGenres()" class="qazaq-v-list-items mt-30">
     <div class="qazaq-v-list-i-img">
-      <img src="assets/image/{{movie.img}}" alt="">
+      <img src="assets/image/{{similarMovie.img}}" alt="">
     </div>
     <div class="qazaq-v-list-content">
       <div class="qazaq-v-tag c2">
-        <span>{{movie.genres}}</span>
+        <span>{{similarMovie.genres}}</span>
       </div>
-      <a [routerLink]="['/movie', movie.id]">{{movie.name}}</a>
+      <a [routerLink]="['/movie', similarMovie.id]">{{similarMovie.name}}</a>
       <div class="movie-time">
         <i class="fa fa-clock-o c1"></i>
-        <span> {{movie.length}} </span>
+        <span> {{similarMovie.length}} </span>
       </div>
     </div>
   </div>
